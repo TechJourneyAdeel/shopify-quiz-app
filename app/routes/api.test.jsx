@@ -21,7 +21,7 @@ export async function action({ request }) {
     return handleOptionsRequest();
   }
 
-  try {
+  try{
     const data = await request.json();
     console.log("Received data:", data);
 
