@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")   
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model TargetFinder {
+  id             Int      @id @default(autoincrement())
+  Customer_Name  String
+  Customer_Email String?
+  Customer_Id    String
+  Test_Name      String
+  Test_Duration  String
+  Test_Errors    String
+  Correct_Taps   String?     // ✅ added
+  Missing_Taps   String?     // ✅ added
+  createdAt      DateTime @default(now())
+}
+
+model SpeedGrid {
+  id             Int      @id @default(autoincrement())
+  Customer_Name  String
+  Customer_Email String?
+  Customer_Id    String
+  Test_Name      String
+  Test_Duration  String
+  Test_Errors    String
+  createdAt      DateTime @default(now())
+}
+
+model NumberRecall {
+  id              Int      @id @default(autoincrement())
+  Customer_Name   String
+  Customer_Email  String?
+  Customer_Id     String
+  Test_Name       String
+  Test_Duration   String
+  Test_Errors     String
+  Correct_Answer  String?  // ✅ added
+  Max_Length      String?  // ✅ added
+  createdAt       DateTime @default(now())
+}
+
+model FindAllDigits {
+  id             Int      @id @default(autoincrement())
+  Customer_Name  String
+  Customer_Email String?
+  Customer_Id    String
+  Test_Name      String
+  Test_Duration  String
+  Test_Errors    String
+  Correct_Taps   String?     // ✅ added
+  Missing_Taps   String?     // ✅ added
+  createdAt      DateTime @default(now())
+}
